@@ -1,0 +1,29 @@
+# Thank you for trying serverless-artillery!
+# This default script is intended to get you started quickly.
+# There is a lot more that Artillery can do.
+# You can find great documentation of the possibilities at:
+# https://artillery.io/docs/
+config:
+  # this hostname will be used as a prefix for each URI in the flow unless a complete URI is specified
+  target: "https://hzht57sxuc.execute-api.us-east-2.amazonaws.com/dev"
+  phases:
+    -
+      duration: 5
+      arrivalRate: 2
+  plugins:
+    faker:
+      locale: en
+  variables:
+    item: "$faker.lorem.sentence"
+
+scenarios:
+  -
+    flow:
+      - 
+        post:
+          url: "/names"
+          json:
+            text: "{{ item }}"
+      - log: "Sent a request to /todos with {{ item }}"
+       
+       
