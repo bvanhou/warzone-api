@@ -5,7 +5,7 @@
 # https://artillery.io/docs/
 config:
   # this hostname will be used as a prefix for each URI in the flow unless a complete URI is specified
-  target: "https://hzht57sxuc.execute-api.us-east-2.amazonaws.com/dev"
+  target: "https://sw2d289rc3.execute-api.us-east-1.amazonaws.com/dev"
   phases:
     -
       duration: 5
@@ -21,7 +21,7 @@ scenarios:
     flow:
       - 
         post:
-          url: "/names"
+          url: "/todos"
           json:
             text: "{{ item }}"
       - log: "Sent a request to /todos with {{ item }}"
