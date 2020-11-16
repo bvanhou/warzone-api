@@ -25,6 +25,9 @@ workflows:
             - build
           context:
             - ccits
+          filters:
+            branches:
+              only: /pre-prod(?:-.+)?$/
 jobs:
   build:
     working_directory: ~/app
@@ -65,10 +68,9 @@ jobs:
       steps:
         - checkout
         - run:
-            name: Install Artillery CLI and dependencies
+            name: Install Artillery CLI
             command: |
               sudo npm install -g artillery
               sudo npm install -g artillery-plugin-faker
-              npm install
         - run: artillery dino
         - run: artillery run ./load.yml
