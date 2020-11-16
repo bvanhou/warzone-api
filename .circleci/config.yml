@@ -27,7 +27,7 @@ workflows:
             - ccits
           filters:
             branches:
-              only: /pre-prod(?:-.+)?$/
+              only: /stress(?:-.+)?$/
 jobs:
   build:
     working_directory: ~/app
