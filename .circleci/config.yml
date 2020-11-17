@@ -49,7 +49,6 @@ jobs:
           name: Install Serverless CLI and dependencies
           command: |
             sudo npm i -g serverless
-            sudo npm i -g typescript
             npm install
             
       # deploy app            
