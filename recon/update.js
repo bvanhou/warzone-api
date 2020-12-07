@@ -43,7 +43,11 @@ module.exports.update = (event, context, callback) => {
       console.error(error);
       callback(null, {
         statusCode: error.statusCode || 501,
-        headers: { 'Content-Type': 'text/plain' },
+        headers: { 
+          "Access-Control-Allow-Credentials": true,
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json" 
+        },
         body: 'Couldn\'t fetch the todo item.',
       });
       return;
@@ -53,6 +57,10 @@ module.exports.update = (event, context, callback) => {
     const response = {
       statusCode: 200,
       body: JSON.stringify(result.Attributes),
+      headers: { 
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      },
     };
     callback(null, response);
   });

@@ -1,8 +1,9 @@
-service: todo
+service: warzone
 
 provider:
   name: aws
   runtime: nodejs12.x
+  profile: phantom
   environment:
     DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
   iamRoleStatements:
@@ -18,48 +19,48 @@ provider:
 
 functions:
   create:
-    handler: todos/create.create
+    handler: recon/create.create
     events:
       - http:
-          path: todos
+          path: recon
           method: post
           cors: true
 
   list:
-    handler: todos/list.list
+    handler: recon/list.list
     events:
       - http:
-          path: todos
+          path: recon
           method: get
           cors: true
 
   get:
-    handler: todos/get.get
+    handler: recon/get.get
     events:
       - http:
-          path: todos/{id}
+          path: recon/{id}
           method: get
           cors: true
 
   update:
-    handler: todos/update.update
+    handler: recon/update.update
     events:
       - http:
-          path: todos/{id}
+          path: recon/{id}
           method: put
           cors: true
 
   delete:
-    handler: todos/delete.delete
+    handler: recon/delete.delete
     events:
       - http:
-          path: todos/{id}
+          path: recon/{id}
           method: delete
           cors: true
 
 resources:
   Resources:
-    TodosDynamoDbTable:
+    ReconDynamoDbTable:
       Type: 'AWS::DynamoDB::Table'
       DeletionPolicy: Retain
       Properties:
